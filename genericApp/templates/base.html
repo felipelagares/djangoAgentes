@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %} <!-- Carrega a tag 'static' -->
+    <title>{% block title %}Generic App{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Generic App</h1>
+        <nav>
+            <a href="{% url 'file_list' %}">Home</a>
+            <a href="{% url 'file_upload' %}">Upload</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Generic App</p>
+    </footer>
+</body>
+</html>
