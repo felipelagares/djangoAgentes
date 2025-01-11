@@ -1,5 +1,4 @@
-/* styles.css */
-
+/* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -8,6 +7,7 @@ body {
     color: #333;
 }
 
+/* Cabeçalho */
 header {
     background-color: #007BFF;
     color: white;
@@ -33,6 +33,12 @@ nav a:hover {
     text-decoration: underline;
 }
 
+nav a.active {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/* Conteúdo principal */
 main {
     padding: 20px;
     max-width: 800px;
@@ -42,6 +48,19 @@ main {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+@media (max-width: 600px) {
+    main {
+        padding: 15px;
+        width: 90%;
+    }
+
+    nav a {
+        display: block;
+        margin: 5px 0;
+    }
+}
+
+/* Rodapé */
 footer {
     text-align: center;
     padding: 10px;
@@ -52,19 +71,50 @@ footer {
     width: 100%;
 }
 
+/* Botões */
 button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
     padding: 10px 20px;
+    border: 5px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Botão de atualização */
+.button1 {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+}
+
+.button1:hover {
+    background-color: #45a049; /* Verde mais escuro */
+}
+
+/* Botão de exclusão */
+.button2 {
+    background-color: #f44336; /* Vermelho */
+    color: white;
+}
+
+.button2:hover {
+    background-color: #d32f2f; /* Vermelho mais escuro */
+}
+
+/* Inputs de arquivo */
 input[type="file"] {
-    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]:hover {
+    background-color: #e6e6e6;
 }

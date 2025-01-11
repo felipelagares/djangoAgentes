@@ -6,7 +6,13 @@
 <h2>Upload a File</h2>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <input type="file" name="file" required>
-    <button type="submit">Upload</button>
+    <p>
+        Nome: <input type="text" name="name" placeholder="Por padrão o nome original será usado">
+    </p>
+    <p>
+        <input type="file" name="file" required>
+    </p>
+
+    <button type="submit" class="button1">Upload</button>
 </form>
 {% endblock %}

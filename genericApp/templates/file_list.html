@@ -6,7 +6,9 @@
 <h2>Uploaded Files</h2>
 <ul>
     {% for file in files %}
-        <li><a href="{{ file.file.url }}">{{ file.file.name }}</a></li>
+        <li>
+            <a href="{% url 'file_update' file.pk %}">{{ file.name }}</a>
+        </li>
     {% empty %}
         <li>No files uploaded yet.</li>
     {% endfor %}
