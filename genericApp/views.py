@@ -23,8 +23,8 @@ def file_update_view(request, pk):
         return redirect('file_list')
 
     if request.method == 'POST':
-        file_instance['name'] = request['name']
-        file_instance['file'] = request['file']
+        file_instance.name = request.POST['name']
+        file_instance.file = request.FILES['file']
         file_instance.save()
         return redirect('file_list')
 
