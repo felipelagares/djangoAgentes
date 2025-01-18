@@ -70,9 +70,35 @@ footer {
     bottom: 0;
     width: 100%;
 }
+.form-conteiner {
+      display: flex;
+      flex-direction: column; /* Alinhar os formulários verticalmente */
+      align-items: center; /* Centralizar na horizontal */
+      gap: 20px; /* Espaço entre os formulários */
+    }
+
+    /* Alinhamento dos botões */
+.form-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px; /* Espaçamento entre os botões */
+    }
+
+form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px; /* Espaço entre os campos */
+    }
+
+label {
+      display: flex;
+      flex-direction: column;
+      font-size: 16px;
+    }
 
 /* Botões */
-button {
+.button {
     padding: 10px 20px;
     border: 5px;
     border-radius: 5px;
@@ -80,7 +106,7 @@ button {
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-button:hover {
+.button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
