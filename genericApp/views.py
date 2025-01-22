@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import File
+from .src import recomendation
 
 
 def file_upload_view(request):
@@ -34,3 +35,13 @@ def file_update_view(request, pk):
 def file_list_view(request):
     files = File.objects.all()
     return render(request, 'file_list.html', {'files': files})
+
+
+def related_films_view(request):
+    if request.method == 'GET':
+        return render(request, 'related_films.html')
+
+    if request.method == 'POST':
+        film = request.POST['film']
+        relateds = recomendation.search(film)
+        return render(request, 'related_films.html', {'films': relateds})
