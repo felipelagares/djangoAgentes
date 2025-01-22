@@ -3,7 +3,7 @@ from genericApp.models import Film
 
 
 def search(film) -> []:
-    all_films = Film.objects.filter(genres == film.genres)
+    all_films = Film.objects.filter(genre__contains=film.genres)
 
 
 def pre_recommend():
