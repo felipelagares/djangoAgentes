@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}Films{% endblock %}
+
+{% block content %}
+<h2>Related films</h2>
+<form method="post">
+    <label for="film_name"></label>
+    <input id="film_name" name="name" type="text">
+    <button type="submit"> search </button>
+</form>
+<ul>
+    {% for film in films %}
+        <li>
+            <article class="film_card">
+                <object name="{% film.name %}" rating="{% film.rating %}">
+                </object>
+            </article>
+        </li>
+    {% empty %}
+        <li>No files uploaded yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

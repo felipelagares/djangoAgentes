@@ -9,8 +9,9 @@ class File(models.Model):
 
 
 class Film(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
-    description = models.TextField()
-    rating = models.FloatField()
-    genres = models.TextField()
+    description = models.TextField(null=True, blank=True)
+    rating = models.FloatField(null=True, blank=True)
+    genres = models.TextField(null=True, blank=True)
+    objects = models.Manager()
