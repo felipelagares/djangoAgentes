@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('films', include('genericApp.urls')),  # Inclui as URLs do app genericApp
+    path('', include('genericApp.urls')),  # Inclui as URLs do app genericApp
 ]
 
 if settings.DEBUG:

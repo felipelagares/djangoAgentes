@@ -39,9 +39,14 @@ def file_list_view(request):
 
 def related_films_view(request):
     if request.method == 'GET':
-        return render(request, 'related_films.html')
+        return render(request, 'related_films.html', {'films': []})
 
     if request.method == 'POST':
         film = request.POST['film']
         relateds = recomendation.search(film)
         return render(request, 'related_films.html', {'films': relateds})
+
+
+def film_details_view(request, pk):
+    film = get_object_or_404(File, pk=pk)
+    return render(request, 'film_details.html', {'film': film})

@@ -8,8 +8,13 @@ django.setup()
 from genericApp.models import Film
 
 
-def search(film) -> []:
+def search(film_name) -> []:  # busca filmes semelhantes a partir de um nome
+    # ------------------lendo um csv---------------------------
+
+    # -------------------usando bdd----------------------------
+    film = Film.objects.filter(name__contains=film_name)
     all_films = Film.objects.filter(genre__contains=film.genres)
+
     return list(all_films)
 
 

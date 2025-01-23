@@ -5,16 +5,18 @@
 {% block content %}
 <h2>Related films</h2>
 <form method="post">
+    {% csrf_token %}
     <label for="film_name"></label>
-    <input id="film_name" name="name" type="text">
+    <input id="film_name" name="film" type="text">
     <button type="submit"> search </button>
 </form>
 <ul>
     {% for film in films %}
         <li>
-            <article class="film_card">
-                <object name="{% film.name %}" rating="{% film.rating %}">
-                </object>
+            <article>
+                <a class="film_card" href="{% url 'film_view' film.pk %}" rating="{{film.rating}}">
+                    {{film.name}}
+                </a>
             </article>
         </li>
     {% empty %}
