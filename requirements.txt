@@ -1,5 +1,6 @@
 # python 3.13.0
 Django~=5.0.4
-pandas~=2.2.3
-scikit-learn~=1.6.1
-gpt4all~=2.8.2
+sentence-transformers
+pandas
+scikit-learn
+nltk

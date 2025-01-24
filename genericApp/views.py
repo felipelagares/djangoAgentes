@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import File
+from .models import File, Film
 from .src import recomendation
 
 
@@ -43,10 +43,13 @@ def related_films_view(request):
 
     if request.method == 'POST':
         film = request.POST['film']
-        relateds = recomendation.search(film)
+        similaridades = recomendation.get_recommendations(title=film)
+        relateds = []
+        for item in similaridades:
+            relateds.append(Film.objects.get(pk=item[0]))
         return render(request, 'related_films.html', {'films': relateds})
 
 
 def film_details_view(request, pk):
-    film = get_object_or_404(File, pk=pk)
+    film = Film.objects.get(pk=pk)
     return render(request, 'film_details.html', {'film': film})

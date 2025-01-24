@@ -5,53 +5,64 @@ body {
     padding: 0;
     background-color: #f9f9f9;
     color: #333;
+    display: flex;
 }
 
-/* Cabeçalho */
 header {
     background-color: #007BFF;
     color: white;
     padding: 10px 20px;
     text-align: center;
+    width: 100%;  /* Corrigido para garantir que o header ocupe toda a largura */
 }
 
 header h1 {
     margin: 0;
 }
 
+/* Barra de navegação à esquerda */
 nav {
-    margin-top: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #333;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
 }
 
 nav a {
+    display: block;
     color: white;
     text-decoration: none;
-    margin: 0 10px;
+    padding: 10px 20px;
+    margin: 5px 0;
 }
 
 nav a:hover {
-    text-decoration: underline;
-}
-
-nav a.active {
-    text-decoration: underline;
-    font-weight: bold;
+    background-color: #444;
 }
 
 /* Conteúdo principal */
 main {
     padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
+    margin-left: 220px; /* Espaço para a barra de navegação */
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
 }
 
 @media (max-width: 600px) {
+    nav {
+        width: 100%;  /* Em telas pequenas, a navegação ocupa toda a largura */
+        position: relative;
+    }
+
     main {
-        padding: 15px;
-        width: 90%;
+        margin-left: 0;
+        width: 100%;
     }
 
     nav a {
@@ -70,37 +81,38 @@ footer {
     bottom: 0;
     width: 100%;
 }
-.form-conteiner {
-      display: flex;
-      flex-direction: column; /* Alinhar os formulários verticalmente */
-      align-items: center; /* Centralizar na horizontal */
-      gap: 20px; /* Espaço entre os formulários */
-    }
 
-    /* Alinhamento dos botões */
+/* Estilos para formulários */
+.form-conteiner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
 .form-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px; /* Espaçamento entre os botões */
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
 
 form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px; /* Espaço entre os campos */
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
 label {
-      display: flex;
-      flex-direction: column;
-      font-size: 16px;
-    }
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
 
 /* Botões */
 .button {
     padding: 10px 20px;
-    border: 5px;
+    border: 5px solid transparent;  /* Corrigido: adicionado borda transparente para evitar distorções */
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -110,24 +122,22 @@ label {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Botão de atualização */
 .button1 {
-    background-color: #4CAF50; /* Verde */
+    background-color: #4CAF50;
     color: white;
 }
 
 .button1:hover {
-    background-color: #45a049; /* Verde mais escuro */
+    background-color: #45a049;
 }
 
-/* Botão de exclusão */
 .button2 {
-    background-color: #f44336; /* Vermelho */
+    background-color: #f44336;
     color: white;
 }
 
 .button2:hover {
-    background-color: #d32f2f; /* Vermelho mais escuro */
+    background-color: #d32f2f;
 }
 
 /* Inputs de arquivo */

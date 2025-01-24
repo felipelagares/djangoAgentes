@@ -14,7 +14,7 @@
     {% for film in films %}
         <li>
             <article>
-                <a class="film_card" href="{% url 'film_view' film.pk %}" rating="{{film.rating}}">
+                <a class="film_card" href="{% url 'film_details' film.pk %}">
                     {{film.name}}
                 </a>
             </article>

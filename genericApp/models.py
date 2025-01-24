@@ -14,4 +14,5 @@ class Film(models.Model):
     description = models.TextField(null=True, blank=True)
     rating = models.FloatField(null=True, blank=True)
     genres = models.TextField(null=True, blank=True)
+    clean_desc = models.TextField(null=True, blank=True)
     objects = models.Manager()

@@ -6,5 +6,5 @@ urlpatterns = [
     path('upload/', views.file_upload_view, name='file_upload'),  # Página para upload de arquivos
     path('file/update/<int:pk>/', views.file_update_view, name='file_update'),
     path('recomendation/', views.related_films_view, name='related_films'),
-    path('film/<int:pk>/', views.film_details_view, name='film_detaiils'),
+    path('film/<int:pk>/', views.film_details_view, name='film_details'),
 ]
