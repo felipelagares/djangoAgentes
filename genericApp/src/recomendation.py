@@ -55,18 +55,21 @@ def calculate_semantic_similarity(embedding_a, embedding_b):
 
 def get_recommendations(title):
     embeddings = film_embeddings
-    searched_film = Film.objects.get(name=title)
-    searched_embedding = embeddings[searched_film.id]
+    searched_film = Film.objects.filter(name=title).first()
+    if searched_film:
+        searched_embedding = embeddings[searched_film.id]
 
-    similares = []
-    for film in filmes:
-        current_embedding = embeddings[film.id]
-        similarity = calculate_semantic_similarity(current_embedding, searched_embedding)
-        similares.append([film.id, similarity])
+        similares = []
+        for film in filmes:
+            current_embedding = embeddings[film.id]
+            similarity = calculate_semantic_similarity(current_embedding, searched_embedding)
+            similares.append([film.id, similarity])
 
-    # Ordenar por similaridade decrescente
-    similares.sort(key=lambda x: x[1], reverse=True)
-    return similares[:5]
+        # Ordenar por similaridade decrescente
+        similares.sort(key=lambda x: x[1], reverse=True)
+        return similares[:5]
+    else:
+        return 'Film not found'
 
 
 if __name__ == '__main__':

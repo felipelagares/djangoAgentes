@@ -20,7 +20,10 @@
             </article>
         </li>
     {% empty %}
-        <li>No files uploaded yet.</li>
+        <li>Movie not found.</li>
     {% endfor %}
 </ul>
+<div class="image-container">
+    <img src="data:image/png;base64,{{ img_data }}" alt="Film Ratings">
+</div>
 {% endblock %}

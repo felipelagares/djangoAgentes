@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import File, Film
 from .src import recomendation
+from .src import ploting
 
 
 def file_upload_view(request):
@@ -44,10 +45,14 @@ def related_films_view(request):
     if request.method == 'POST':
         film = request.POST['film']
         similaridades = recomendation.get_recommendations(title=film)
+        if similaridades == 'Film not found':
+            return render(request, 'related_films.html', {'films': []})
         relateds = []
         for item in similaridades:
             relateds.append(Film.objects.get(pk=item[0]))
-        return render(request, 'related_films.html', {'films': relateds})
+            relateds.sort(key=lambda x: float(x.rating), reverse=True)
+            img_data = ploting.plot_film_ratings(relateds)
+        return render(request, 'related_films.html', {'films': relateds, 'img_data': img_data})
 
 
 def film_details_view(request, pk):

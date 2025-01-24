@@ -80,6 +80,7 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+    margin-top: auto;
 }
 
 /* Estilos para formulários */
@@ -153,4 +154,36 @@ input[type="file"] {
 
 input[type="file"]:hover {
     background-color: #e6e6e6;
+}
+
+.film_card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px;
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.film_card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.image-container {
+    width: 200px; /* Largura máxima da div */
+    height: 200px; /* Altura máxima da div */
+    display: flex;
+    justify-content: center; /* Centraliza a imagem horizontalmente */
+    align-items: center; /* Centraliza a imagem verticalmente */
+    background-color: #f1f1f1; /* Cor de fundo opcional */
+    border-radius: 8px; /* Bordas arredondadas, opcional */
+    overflow: hidden; /* Impede que a imagem ultrapasse os limites da div */
+}
+
+.image-container img {
+    width: 100%; /* Faz a imagem ocupar 100% da largura da div */
+    height: 100%; /* Faz a imagem ocupar 100% da altura da div */
+    object-fit: contain; /* Ajusta a imagem para caber sem cortar */
 }
