@@ -3,7 +3,10 @@
 {% block title %}Movie Recommendation{% endblock %}
 
 {% block content %}
-<h2>Movie Recommendation</h2>
+<div class="h-container">
+    <h2>Movie Recommendation</h2>
+</div>
+<br>
 <form method="post">
     <!-- Qualquer post no Django deve ter esse token para autenticar a requisiçao -->
     {% csrf_token %}
@@ -27,11 +30,15 @@
     <!-- caso a lista de filmes venha vazia (o filme não está no banco de dados)
      o retorno da funçao get_recommendations foi "Film not found"-->
     {% empty %}
+    {% if request.method == "POST" %}
         <li>Movie not found.</li>
+    {% endif %}
     {% endfor %}
 </ul>
 <!-- conteiner para o grafico -->
+{% if request.method == "POST" %}
 <div class="image-container">
     <img src="data:image/png;base64,{{ img_data }}" alt="Film Ratings">
 </div>
+{% endif %}
 {% endblock %}

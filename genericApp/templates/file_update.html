@@ -3,7 +3,10 @@
 {% block title %}Update File{% endblock %}
 
 {% block content %}
-    <h2>Update File</h2>
+    <div class="h-container">
+        <h2>Update File</h2>
+    </div>
+    <br>
     <!-- enctype deve ser informado para permitir o envio de arquivos pela requisiçao post -->
     <form method="post" enctype="multipart/form-data">
         <!-- Qualquer post no Django deve ter esse token para autenticar a requisiçao -->

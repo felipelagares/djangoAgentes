@@ -3,15 +3,18 @@
 {% block title %}Uploaded Files{% endblock %}
 
 {% block content %}
-<h2>Uploaded Files</h2>
-<ul>
-    {% for file in files %}
-        <li>
-            <!-- passando a chave primaria do arquivo no post com file.pk -->
-            <a href="{% url 'file_update' file.pk %}">{{ file.name }}</a>
-        </li>
-    {% empty %}
-        <li>No files uploaded yet.</li>
-    {% endfor %}
-</ul>
+    <div class="h-container">
+    <h2>Uploaded Files</h2>
+    </div>
+    <br>
+    <ul>
+        {% for file in files %}
+            <li>
+                <!-- passando a chave primaria do arquivo no post com file.pk -->
+                <a href="{% url 'file_update' file.pk %}">{{ file.name }}</a>
+            </li>
+        {% empty %}
+            <li>No files uploaded yet.</li>
+        {% endfor %}
+    </ul>
 {% endblock %}

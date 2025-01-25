@@ -36,7 +36,8 @@ def precalculate_embeddings(filmes):
 
 
 # carregar os embeddings sempre que o servidor for iniciar. carregá-los a cada requisiçao teria um custo gigantesco
-# de tempo
+# de tempo por isso é calculado a partir do banco de dados antes de iniciar o serviço. Quabt maior o Banco de dados
+# mais tempo será gasto nesses cálculos. O meu tem 2800 filmes (isso é teoricamente pouco) e demora alguns segundos
 film_embeddings = precalculate_embeddings(filmes)
 
 

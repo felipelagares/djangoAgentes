@@ -1,4 +1,3 @@
-<!-- Jinja2 usa os caracteres {{%%}} e {{}} dentro de % vem código e dentro de {} vem a utilizaçao de variaveis -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,8 +7,10 @@
 </head>
 <body>
     <header>
-        <h1>Generic App</h1>
         <nav>
+            <div class="h-container">
+            <h1>Generic App</h1>
+            </div>
             <!-- Referencias de navegação para as paginas que podem ser obtidas com requisiçoes tipo get -->
             <a href="{% url 'file_list' %}">Home</a>
             <a href="{% url 'file_upload' %}">Upload</a>

@@ -1,35 +1,48 @@
 /* Estilos gerais */
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+/* Conteúdo principal */
+
+main {
+    padding: 20px;
+    margin-left: 130px; /* Espaço para a barra de navegação */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    display: block;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 5px;
+    padding: 5px;
+    left: 130px;
     background-color: #f9f9f9;
     color: #333;
-    display: flex;
+    text-align: center;
+    flex-direction: row;
 }
 
 header {
-    background-color: #007BFF;
+    display: flex;
     color: white;
-    padding: 10px 20px;
-    text-align: center;
-    width: 100%;  /* Corrigido para garantir que o header ocupe toda a largura */
+    justify-content: center;
 }
-
-header h1 {
-    margin: 0;
-}
-
 /* Barra de navegação à esquerda */
 nav {
     position: fixed;
     top: 0;
     left: 0;
-    width: 200px;
+    width: 150px;
     height: 100%;
     background-color: #333;
     padding-top: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    justify-content: center;
 }
 
 nav a {
@@ -38,49 +51,13 @@ nav a {
     text-decoration: none;
     padding: 10px 20px;
     margin: 5px 0;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
 }
 
 nav a:hover {
     background-color: #444;
-}
-
-/* Conteúdo principal */
-main {
-    padding: 20px;
-    margin-left: 220px; /* Espaço para a barra de navegação */
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    flex-grow: 1;
-}
-
-@media (max-width: 600px) {
-    nav {
-        width: 100%;  /* Em telas pequenas, a navegação ocupa toda a largura */
-        position: relative;
-    }
-
-    main {
-        margin-left: 0;
-        width: 100%;
-    }
-
-    nav a {
-        display: block;
-        margin: 5px 0;
-    }
-}
-
-/* Rodapé */
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    margin-top: auto;
 }
 
 /* Estilos para formulários */
@@ -113,10 +90,16 @@ label {
 /* Botões */
 .button {
     padding: 10px 20px;
-    border: 5px solid transparent;  /* Corrigido: adicionado borda transparente para evitar distorções */
+    border: 5px solid transparent;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #007BFF;
+    color: white;
+    width: auto; /* Ajuste automático */
+    max-width: 200px; /* Limita a largura do botão */
+    display: inline-block; /* Ajusta o tamanho do botão conforme o conteúdo */
+    margin: 0 auto; /* Centraliza o botão no contêiner */
 }
 
 .button:hover {
@@ -186,4 +169,10 @@ input[type="file"]:hover {
     width: 100%; /* Faz a imagem ocupar 100% da largura da div */
     height: 100%; /* Faz a imagem ocupar 100% da altura da div */
     object-fit: contain; /* Ajusta a imagem para caber sem cortar */
+}
+
+.h-container {
+    display: block;
+    justify-content: center;
+    align-items: center;
 }
