@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Movie details{% endblock %}
+
+{% block content %}
+    <h2>Movie view</h2>
+    <article class="film-container">
+        <div>
+            <img src="{% static 'images/film_icon.jpeg' %}" alt="film_icon.jpeg">
+        </div>
+        <div>
+            {{film.name}}
+        </div>
+        <div>
+            {{film.rating}}
+        </div>
+        <div>
+            {{film.description}}
+        </div>
+    </article>
+{% endblock %}

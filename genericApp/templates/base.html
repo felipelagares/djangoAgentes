@@ -1,7 +1,8 @@
+<!-- Jinja2 usa os caracteres {{%%}} e {{}} dentro de % vem código e dentro de {} vem a utilizaçao de variaveis -->
 <!DOCTYPE html>
 <html>
 <head>
-    {% load static %} <!-- Carrega a tag 'static' -->
+    {% load static %} <!-- Carrega a tag 'static' (pasta) -->
     <title>{% block title %}Generic App{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
@@ -9,15 +10,14 @@
     <header>
         <h1>Generic App</h1>
         <nav>
+            <!-- Referencias de navegação para as paginas que podem ser obtidas com requisiçoes tipo get -->
             <a href="{% url 'file_list' %}">Home</a>
             <a href="{% url 'file_upload' %}">Upload</a>
+            <a href="{% url 'related_films'%}">Movie Recomendations</a>
         </nav>
     </header>
     <main>
         {% block content %}{% endblock %}
     </main>
-    <footer>
-        <p>&copy; 2024 Generic App</p>
-    </footer>
 </body>
 </html>

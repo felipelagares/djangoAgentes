@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Update File{% endblock %}
+
+{% block content %}
+    <h2>Update File</h2>
+    <!-- enctype deve ser informado para permitir o envio de arquivos pela requisiçao post -->
+    <form method="post" enctype="multipart/form-data">
+        <!-- Qualquer post no Django deve ter esse token para autenticar a requisiçao -->
+        {% csrf_token %}
+
+        <!-- Campo de Nome -->
+        <div class="form-row">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" placeholder="{{file.name}}" required>
+        </div>
+
+        <!-- Campo de Arquivo -->
+        <div class="form-row">
+            <label for="file">Arquivo:</label>
+            <input type="file" id="file" name="file" required>
+        </div>
+
+        <!-- Botão de Submissão para Atualizar -->
+        <div class="form-row">
+            <button type="submit" class="button1">Update</button>
+        </div>
+    </form>
+
+    <!-- Formulário para Excluir -->
+    <form method="post" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="delete">
+
+        <!-- Botão de Exclusão -->
+        <div class="form-row">
+            <button type="submit" class="button2">Delete</button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,11 +1,11 @@
-/* styles.css */
-
+/* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f9f9f9;
     color: #333;
+    display: flex;
 }
 
 header {
@@ -13,35 +13,65 @@ header {
     color: white;
     padding: 10px 20px;
     text-align: center;
+    width: 100%;  /* Corrigido para garantir que o header ocupe toda a largura */
 }
 
 header h1 {
     margin: 0;
 }
 
+/* Barra de navegação à esquerda */
 nav {
-    margin-top: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #333;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
 }
 
 nav a {
+    display: block;
     color: white;
     text-decoration: none;
-    margin: 0 10px;
+    padding: 10px 20px;
+    margin: 5px 0;
 }
 
 nav a:hover {
-    text-decoration: underline;
+    background-color: #444;
 }
 
+/* Conteúdo principal */
 main {
     padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
+    margin-left: 220px; /* Espaço para a barra de navegação */
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
 }
 
+@media (max-width: 600px) {
+    nav {
+        width: 100%;  /* Em telas pequenas, a navegação ocupa toda a largura */
+        position: relative;
+    }
+
+    main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    nav a {
+        display: block;
+        margin: 5px 0;
+    }
+}
+
+/* Rodapé */
 footer {
     text-align: center;
     padding: 10px;
@@ -50,21 +80,110 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+    margin-top: auto;
 }
 
-button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
+/* Estilos para formulários */
+.form-conteiner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+
+/* Botões */
+.button {
     padding: 10px 20px;
+    border: 5px solid transparent;  /* Corrigido: adicionado borda transparente para evitar distorções */
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-button:hover {
-    background-color: #0056b3;
+.button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.button1 {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.button1:hover {
+    background-color: #45a049;
+}
+
+.button2 {
+    background-color: #f44336;
+    color: white;
+}
+
+.button2:hover {
+    background-color: #d32f2f;
+}
+
+/* Inputs de arquivo */
 input[type="file"] {
-    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]:hover {
+    background-color: #e6e6e6;
+}
+
+.film_card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px;
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.film_card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.image-container {
+    width: 200px; /* Largura máxima da div */
+    height: 200px; /* Altura máxima da div */
+    display: flex;
+    justify-content: center; /* Centraliza a imagem horizontalmente */
+    align-items: center; /* Centraliza a imagem verticalmente */
+    background-color: #f1f1f1; /* Cor de fundo opcional */
+    border-radius: 8px; /* Bordas arredondadas, opcional */
+    overflow: hidden; /* Impede que a imagem ultrapasse os limites da div */
+}
+
+.image-container img {
+    width: 100%; /* Faz a imagem ocupar 100% da largura da div */
+    height: 100%; /* Faz a imagem ocupar 100% da altura da div */
+    object-fit: contain; /* Ajusta a imagem para caber sem cortar */
 }

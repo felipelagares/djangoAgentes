@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Movie Recommendation{% endblock %}
+
+{% block content %}
+<h2>Movie Recommendation</h2>
+<form method="post">
+    <!-- Qualquer post no Django deve ter esse token para autenticar a requisiçao -->
+    {% csrf_token %}
+    <!-- cada input precisa de um label cujo 'for' é ligado ao 'id' do input -->
+    <label for="film_name"></label>
+    <!-- para passar informaçoes na requisição é necessário um input, o valor inserido pelo usuario ou 'value'
+    caso input se do tipo 'hidden' é obtido na view através do atributo 'name'-->
+    <input id="film_name" name="film" type="text">
+    <!-- botão para enviar a requisiçao -->
+    <button type="submit"> search </button>
+</form>
+<ul>
+    {% for film in films %}
+        <li>
+            <article>
+                <a class="film_card" href="{% url 'film_details' film.pk %}">
+                    {{film.name}}
+                </a>
+            </article>
+        </li>
+    <!-- caso a lista de filmes venha vazia (o filme não está no banco de dados)
+     o retorno da funçao get_recommendations foi "Film not found"-->
+    {% empty %}
+        <li>Movie not found.</li>
+    {% endfor %}
+</ul>
+<!-- conteiner para o grafico -->
+<div class="image-container">
+    <img src="data:image/png;base64,{{ img_data }}" alt="Film Ratings">
+</div>
+{% endblock %}
