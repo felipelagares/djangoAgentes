@@ -1,6 +1,9 @@
 # Estudo de caso: Django framework, algoritmo recomendador de filmes
 
 ## Rodando a aplicação localmente 🤞
+
+O csv com os dados está disponivel [aqui](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset/data)
+
 ### Python
 Instalar o python, se ja não o tiver, baixando o instalador no final da pagina deste do site oficial do python: [link](https://www.python.org/downloads/release/python-3126/).
 Esse link leva para a versão 3.12.6 que é a que estou usando, é possivel que haja conflitos das bibliotecas com outras
