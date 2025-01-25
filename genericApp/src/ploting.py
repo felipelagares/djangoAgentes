@@ -1,10 +1,6 @@
 import base64
-
 import matplotlib.pyplot as plt
 import io
-import urllib
-from django.core.files.storage import FileSystemStorage
-from django.http import HttpResponse
 
 
 def plot_film_ratings(filmes):
@@ -32,7 +28,5 @@ def plot_film_ratings(filmes):
     img_data = base64.b64encode(buf.getvalue()).decode('utf-8')
 
     buf.close()  # Fechar o buffer de memória
-
-    return img_data
 
     return img_data

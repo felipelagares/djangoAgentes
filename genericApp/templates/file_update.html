@@ -4,8 +4,9 @@
 
 {% block content %}
     <h2>Update File</h2>
-
+    <!-- enctype deve ser informado para permitir o envio de arquivos pela requisiçao post -->
     <form method="post" enctype="multipart/form-data">
+        <!-- Qualquer post no Django deve ter esse token para autenticar a requisiçao -->
         {% csrf_token %}
 
         <!-- Campo de Nome -->
