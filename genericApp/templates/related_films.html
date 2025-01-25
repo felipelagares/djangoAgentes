@@ -10,13 +10,17 @@
 <form method="post">
     <!-- Qualquer post no Django deve ter esse token para autenticar a requisiçao -->
     {% csrf_token %}
-    <!-- cada input precisa de um label cujo 'for' é ligado ao 'id' do input -->
-    <label for="film_name"></label>
-    <!-- para passar informaçoes na requisição é necessário um input, o valor inserido pelo usuario ou 'value'
-    caso input se do tipo 'hidden' é obtido na view através do atributo 'name'-->
-    <input id="film_name" name="film" type="text">
-    <!-- botão para enviar a requisiçao -->
-    <button type="submit"> search </button>
+    <div class="labels-container" >
+        <!-- cada input precisa de um label cujo 'for' é ligado ao 'id' do input -->
+        <label for="film_name" class="label-line">Nome do filme:
+        <!-- para passar informaçoes na requisição é necessário um input, o valor inserido pelo usuario ou 'value'
+        caso input se do tipo 'hidden' é obtido na view através do atributo 'name'-->
+        <input id="film_name" name="film" type="text" placeholder="Ex: Batman">
+        </label>
+        <br>
+        <!-- botão para enviar a requisiçao -->
+        <button type="submit"> search </button>
+    </div>
 </form>
 <ul>
     {% for film in films %}
