@@ -1,189 +1,194 @@
 /* Estilos gerais */
+* {
+    margin: 0; /* Remove a margem padrão de todos os elementos */
+    padding: 0; /* Remove o preenchimento padrão de todos os elementos */
+    box-sizing: border-box; /* Inclui bordas e preenchimento no tamanho total do elemento */
+}
+
+/* Estilo da seção principal */
+main {
+    padding: 20px; /* Espaçamento interno ao redor do conteúdo */
+    margin-left: 130px; /* Cria espaço para a barra de navegação lateral */
+    background-color: white; /* Define a cor de fundo como branca */
+    border-radius: 8px; /* Arredonda os cantos do contêiner principal */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra leve para destacar o contêiner */
+    flex-grow: 1; /* Permite que o elemento cresça para ocupar o espaço disponível */
+    display: inline-block; /* Define o comportamento padrão de bloco para o elemento */
+    justify-content: center;  /* Alinha horizontalmente */
+    align-items: center;
+    align-self: center;
+    height: 95vh;
+}
+
+/* Estilo do corpo da página */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
+    font-family: Arial, sans-serif; /* Define a fonte padrão para o corpo */
+    margin: 20px; /* Define uma margem externa ao redor do corpo */
+    padding: 10px; /* Define um preenchimento interno para o corpo */
+    left: 130px; /* Ajusta o deslocamento do corpo em relação à borda esquerda */
+    background-color: #f9f9f9; /* Define uma cor de fundo clara */
+    color: #333; /* Define a cor do texto como cinza escuro */
     display: flex;
+    justify-content: center;  /* Alinha horizontalmente */
+    align-self: center; /* Centraliza o texto no corpo */
+    height: 95vh;
 }
 
+/* Estilo do cabeçalho */
 header {
-    background-color: #007BFF;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    width: 100%;  /* Corrigido para garantir que o header ocupe toda a largura */
-}
-
-header h1 {
-    margin: 0;
+    display: flex; /* Torna o cabeçalho um contêiner flexível */
+    color: white; /* Define a cor do texto como branco */
+    justify-content: center; /* Centraliza os itens horizontalmente */
 }
 
 /* Barra de navegação à esquerda */
 nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 100%;
-    background-color: #333;
-    padding-top: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    position: fixed; /* Fixa a barra de navegação na posição especificada */
+    top: 0; /* Define a posição superior como 0 */
+    left: 0; /* Define a posição à esquerda como 0 */
+    width: 150px; /* Define a largura da barra de navegação */
+    height: 100%; /* Faz a barra ocupar toda a altura da tela */
+    background-color: #333; /* Define uma cor de fundo escura */
+    padding-top: 20px; /* Adiciona espaçamento superior interno */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra à direita da barra */
+    justify-content: center; /* Centraliza os itens na barra (não aplicável diretamente a nav) */
 }
 
+/* Links da barra de navegação */
 nav a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    margin: 5px 0;
+    display: block; /* Faz os links ocuparem toda a largura disponível */
+    color: white; /* Define a cor do texto dos links como branco */
+    text-decoration: none; /* Remove o sublinhado dos links */
+    padding: 10px 20px; /* Define o espaçamento interno dos links */
+    margin: 5px 0; /* Adiciona espaçamento vertical entre os links */
+    justify-content: center; /* Centraliza o conteúdo dos links (não aplicável aqui) */
+    justify-items: center; /* Não tem efeito prático neste contexto */
+    text-align: center; /* Centraliza o texto dentro dos links */
 }
 
+/* Estilo ao passar o mouse sobre os links */
 nav a:hover {
-    background-color: #444;
+    background-color: #444; /* Altera a cor de fundo ao passar o mouse */
 }
 
-/* Conteúdo principal */
-main {
-    padding: 20px;
-    margin-left: 220px; /* Espaço para a barra de navegação */
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    flex-grow: 1;
-}
-
-@media (max-width: 600px) {
-    nav {
-        width: 100%;  /* Em telas pequenas, a navegação ocupa toda a largura */
-        position: relative;
-    }
-
-    main {
-        margin-left: 0;
-        width: 100%;
-    }
-
-    nav a {
-        display: block;
-        margin: 5px 0;
-    }
-}
-
-/* Rodapé */
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #007BFF;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    margin-top: auto;
-}
-
-/* Estilos para formulários */
+/* Estilo para contêiner de formulários */
 .form-conteiner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    display: flex; /* Torna o contêiner flexível */
+    flex-direction: column; /* Organiza os itens em uma coluna */
+    align-items: center; /* Alinha os itens ao centro horizontalmente */
+    gap: 20px; /* Adiciona espaçamento entre os itens */
 }
 
-.form-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
+/* Estilo para formulário */
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: block; /* Define o formulário como bloco */
+    flex-direction: row; /* (Não aplicável ao display block) */
+    gap: 10px; /* Adiciona espaçamento entre os itens */
 }
 
+/* Rótulos de formulário */
 label {
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
+    display: block; /* Faz os rótulos ocuparem toda a largura disponível */
+    flex-direction: row; /* Não aplicável ao display block */
+    font-size: 16px; /* Define o tamanho da fonte dos rótulos */
+}
+
+.labels-container {
+  display: block;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.label-line {
+  display: block;
+  align-items: center;
+}
+
+.label-line label {
+  width: auto; /* Ajuste a largura conforme necessário */
+}
+
+/* Evita que os botões dentro do .labels-container ocupem toda a largura */
+.labels-container button {
+  width: auto;  /* Garante que o botão tenha apenas o tamanho necessário */
+  align-self: center; /* Faz o botão alinhar à esquerda (ou use center, dependendo do caso) */
+  padding: 5px 10px; /* Ajuste o padding conforme necessário */
 }
 
 /* Botões */
 .button {
-    padding: 10px 20px;
-    border: 5px solid transparent;  /* Corrigido: adicionado borda transparente para evitar distorções */
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px 20px; /* Adiciona espaçamento interno ao botão */
+    border: 5px solid transparent; /* Cria uma borda transparente */
+    border-radius: 5px; /* Arredonda os cantos do botão */
+    cursor: pointer; /* Altera o cursor ao passar sobre o botão */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Adiciona transições suaves */
+    background-color: #007BFF; /* Define a cor de fundo azul */
+    color: white; /* Define a cor do texto como branco */
+    width: auto; /* Define uma largura fixa para o botão */
+    margin: 0 auto; /* Centraliza o botão horizontalmente */
 }
 
+/* Estilo ao passar o mouse sobre os botões */
 .button:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona sombra ao passar o mouse */
 }
 
+/* Outros estilos para botões */
 .button1 {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #4CAF50; /* Define cor de fundo verde */
+    color: white; /* Define cor do texto como branco */
 }
 
 .button1:hover {
-    background-color: #45a049;
+    background-color: #45a049; /* Altera a cor de fundo ao passar o mouse */
 }
 
 .button2 {
-    background-color: #f44336;
-    color: white;
+    background-color: #f44336; /* Define cor de fundo vermelha */
+    color: white; /* Define cor do texto como branco */
 }
 
 .button2:hover {
-    background-color: #d32f2f;
+    background-color: #d32f2f; /* Altera a cor de fundo ao passar o mouse */
 }
 
 /* Inputs de arquivo */
 input[type="file"] {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #f9f9f9;
-    color: #333;
-    transition: all 0.3s ease;
+    padding: 5px; /* Adiciona espaçamento interno */
+    border: 1px solid #ccc; /* Define uma borda cinza clara */
+    border-radius: 5px; /* Arredonda os cantos */
+    cursor: pointer; /* Altera o cursor ao passar sobre o elemento */
+    background-color: #f9f9f9; /* Define cor de fundo clara */
+    color: #333; /* Define a cor do texto */
+    transition: all 0.3s ease; /* Adiciona transições suaves */
 }
 
+/* Estilo ao passar o mouse sobre o input de arquivo */
 input[type="file"]:hover {
-    background-color: #e6e6e6;
+    background-color: #e6e6e6; /* Altera a cor de fundo ao passar o mouse */
 }
 
+/* Cartões de filmes */
 .film_card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin: 20px;
-    max-width: 300px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white; /* Define a cor de fundo como branca */
+    border-radius: 8px; /* Arredonda os cantos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra leve */
+    overflow: hidden; /* Impede que o conteúdo exceda os limites */
+    margin: 20px; /* Adiciona espaçamento externo ao redor do cartão */
+    max-width: 300px; /* Define uma largura máxima */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adiciona transições suaves */
 }
 
+/* Estilo ao passar o mouse sobre o cartão */
 .film_card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px); /* Eleva o cartão ao passar o mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Intensifica a sombra */
 }
 
+/* Contêiner de imagens */
 .image-container {
-    width: 200px; /* Largura máxima da div */
-    height: 200px; /* Altura máxima da div */
-    display: flex;
-    justify-content: center; /* Centraliza a imagem horizontalmente */
-    align-items: center; /* Centraliza a imagem verticalmente */
-    background-color: #f1f1f1; /* Cor de fundo opcional */
-    border-radius: 8px; /* Bordas arredondadas, opcional */
-    overflow: hidden; /* Impede que a imagem ultrapasse os limites da div */
-}
-
-.image-container img {
-    width: 100%; /* Faz a imagem ocupar 100% da largura da div */
-    height: 100%; /* Faz a imagem ocupar 100% da altura da div */
-    object-fit: contain; /* Ajusta a imagem para caber sem cortar */
+  width: 300px;  /* Define largura fixa */
+  height: 300px; /* Define altura fixa */
+  display: flex;
+  justify-content: center; /* Centraliza a imagem horizontalmente */
 }

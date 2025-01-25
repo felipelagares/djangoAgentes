@@ -3,27 +3,28 @@
 {% block title %}Update File{% endblock %}
 
 {% block content %}
-    <h2>Update File</h2>
+    <div class="h-container">
+        <h2>Update File</h2>
+    </div>
+    <br>
     <!-- enctype deve ser informado para permitir o envio de arquivos pela requisiçao post -->
     <form method="post" enctype="multipart/form-data">
         <!-- Qualquer post no Django deve ter esse token para autenticar a requisiçao -->
         {% csrf_token %}
-
-        <!-- Campo de Nome -->
-        <div class="form-row">
-            <label for="name">Nome:</label>
+        <div class="labels-container">
+            <!-- Campo de Nome -->
+            <label for="name" class="label-line">Nome:
             <input type="text" id="name" name="name" placeholder="{{file.name}}" required>
-        </div>
-
-        <!-- Campo de Arquivo -->
-        <div class="form-row">
-            <label for="file">Arquivo:</label>
+            </label>
+            <br>
+            <!-- Campo de Arquivo -->
+            <label for="file" class="label-line">Arquivo:
             <input type="file" id="file" name="file" required>
-        </div>
-
-        <!-- Botão de Submissão para Atualizar -->
-        <div class="form-row">
+            </label>
+            <br>
+            <!-- Botão de Submissão para Atualizar -->
             <button type="submit" class="button1">Update</button>
+            <br>
         </div>
     </form>
 
@@ -33,7 +34,7 @@
         <input type="hidden" name="action" value="delete">
 
         <!-- Botão de Exclusão -->
-        <div class="form-row">
+        <div class="labels-container">
             <button type="submit" class="button2">Delete</button>
         </div>
     </form>

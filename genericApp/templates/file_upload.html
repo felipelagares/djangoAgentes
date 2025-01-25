@@ -3,16 +3,24 @@
 {% block title %}Upload File{% endblock %}
 
 {% block content %}
+<div class="h-container">
 <h2>Upload a File</h2>
+</div>
+<br>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <p>
-        Nome: <input type="text" name="name" placeholder="Por padrão o nome original será usado">
-    </p>
-    <p>
-        <input type="file" name="file" required>
-    </p>
+    <div class="labels-container">
+        <label for="file_name" class="label-line">Nome:
+            <input type="text" id="file_name" name="name" placeholder="Por padrão o nome original será usado">
+        </label>
 
-    <button type="submit" class="button1">Upload</button>
+        <br>
+        <label for="file" class="label-line">Arquivo:
+            <input type="file" id="file" name="file" required>
+        </label>
+
+        <br>
+        <button type="submit" class="button1">Upload</button>
+    </div>
 </form>
 {% endblock %}
