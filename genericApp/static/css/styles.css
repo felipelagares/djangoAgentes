@@ -187,6 +187,7 @@ input[type="file"]:hover {
 
 /* Contêiner de imagens */
 .image-container {
+    margin-left: 135px;
   width: 300px;  /* Define largura fixa */
   height: 300px; /* Define altura fixa */
   display: flex;
