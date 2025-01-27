@@ -1,4 +1,10 @@
 # Estudo de caso: Django framework, algoritmo recomendador de filmes
+## Grupo:
+- Felipe Galvão Lagares
+- Hailton David Lemos
+- Raphael Abenom dos Santos
+### Video
+[link para o video no youtube](https://youtu.be/HDANciib2Ws?feature=shared)
 
 ## Rodando a aplicação localmente 🤞
 
