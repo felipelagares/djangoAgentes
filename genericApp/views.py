@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from rest_framework import viewsets, status
+from rest_framework.response import Response
 from .models import File, Film
-from .src import recomendation
-from .src import ploting
+from .serializers import FilmSerializer
+from .src import recomendation, ploting, populate
 
 
 def file_upload_view(request):
@@ -14,7 +16,11 @@ def file_upload_view(request):
 
         if uploaded_file:
             File.objects.create(name=uploaded_name, file=uploaded_file)
-            return redirect('file_list')
+
+        if 'action' in request.POST and request.POST['action'] == 'populate':
+            populate(uploaded_file)
+
+        return redirect('file_list')
     return render(request, 'file_upload.html')
 
 
@@ -67,3 +73,42 @@ def film_details_view(request, pk):
     # view para visualizaçao de um filme
     film = Film.objects.get(pk=pk)
     return render(request, 'film_details.html', {'film': film})
+
+
+class RecommendationViewSet(viewsets.ViewSet):
+    def recommend(self, request):
+        film_name = request.GET.get('film', None)
+
+        if not film_name:
+            return Response({"error": "O parâmetro 'film' é obrigatório"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Buscar recomendações
+        similaridades = recomendation.get_recommendations(title=film_name)
+
+        if similaridades == 'Film not found':
+            return Response({"error": "Filme não encontrado"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Buscar os filmes recomendados
+        relateds = [Film.objects.get(pk=item[0]) for item in similaridades]
+        relateds.sort(key=lambda x: float(x.rating or 0), reverse=True)
+
+        # ------------------ Usando serializers --------------------------------------------
+        # Serializar os dados dos filmes
+        serializer = FilmSerializer(relateds, many=True)
+
+        # Gerar gráfico de avaliações dos filmes recomendados
+        img_data = ploting.plot_film_ratings(relateds)
+
+        # Preparar a resposta
+        data = {"films": serializer.data, "img_data": img_data}
+
+        # Retornar resposta com os dados serializados
+        return Response(data, status=status.HTTP_200_OK)
+
+        # ------------------------------ transformando em json eu mesmo ------------------------
+        # data = {
+        #     "films": [{"id": film.id, "name": film.name, "description": film.description, "rating": film.rating} for
+        #               film in relateds],
+        #     "img_data": img_data,
+        # }
+        # return Response(data, status=status.HTTP_200_OK)
