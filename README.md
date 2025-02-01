@@ -3,8 +3,15 @@
 - Felipe Galvão Lagares
 - Hailton David Lemos
 - Raphael Abenom dos Santos
+
 ### Video
-[link para o video no youtube](https://youtu.be/HDANciib2Ws?feature=shared)
+[link para o video no youtube](https://youtu.be/HDANciib2Ws?feature=shared) com uma explicação básica do projeto rodando.
+
+## Recomendações pessoais
+### github
+O github é no mínimo uma excelente ferramenta de versionamento de código mas para quem está iniciando é dificil decorar
+a grande quantidade de comandos e funcionalidades. Baixe o [Github Desktop](https://desktop.github.com/download/) tente 
+copiar este repositório com ele em code -> abrir com github desktop.
 
 ## Rodando a aplicação localmente 🤞
 
@@ -52,6 +59,10 @@ não são aplicados, deve ser utilizado `python manage.py migrate` para que os c
 - Diretório criado manualmente para acomodar arquivos de código com funções específicas
 ##### ploting.py
 - Arquivo python onde eu defino as funções de  plotagem de gráfico baseado nas avaliações dos filmes
+
+##### populate.py
+- Arquivo python onde eu crio a funçao que popula meu banco de dados, ela recebe um arquivo e espera que certas
+colunas estejam presentes nele (as mesmas definidas no models).
 
 ##### recomendation.py
 - Arquivo python com as definições de funções de busca de filmes por nome. O modelo é pré-treinado para comparar vetores

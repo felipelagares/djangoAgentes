@@ -37,7 +37,7 @@ def precalculate_embeddings(filmes):
 
 # carregar os embeddings sempre que o servidor for iniciar. carregá-los a cada requisiçao teria um custo gigantesco
 # de tempo por isso é calculado a partir do banco de dados antes de iniciar o serviço. Quabt maior o Banco de dados
-# mais tempo será gasto nesses cálculos. O meu tem 2800 filmes (isso é teoricamente pouco) e demora alguns segundos
+# mais tempo será gasto nesses cálculos. Quanto mais filmes mais demora para calcular tudo.
 film_embeddings = precalculate_embeddings(filmes)
 
 
@@ -60,7 +60,8 @@ def preprocess_text(text):
 
 
 # calcula a similaridade semantica entre os filmes, não possui um longo tempo de espera pois os objetos comparados foram
-# vetorizados ao calcular os embeddings
+# vetorizados ao calcular os embeddings. Geralmente cossine_similarity é usado como métrica mais comum para o modelo mas
+# serve perfeitamente para encontrar os embeddings mais parecidos.
 def calculate_semantic_similarity(embedding_a, embedding_b):
     similarity = cosine_similarity([embedding_a], [embedding_b])[0][0]
     return similarity * 100
