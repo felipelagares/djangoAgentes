@@ -23,19 +23,9 @@
             </label>
             <br>
             <!-- Botão de Submissão para Atualizar -->
-            <button type="submit" class="button1">Update</button>
+            <button type="submit" class="button1" name="acao" value="update">Update</button>
+            <button type="submit" class="button2" name="acao" value="delete">Delete</button>
             <br>
-        </div>
-    </form>
-
-    <!-- Formulário para Excluir -->
-    <form method="post" style="display: inline;">
-        {% csrf_token %}
-        <input type="hidden" name="action" value="delete">
-
-        <!-- Botão de Exclusão -->
-        <div class="labels-container">
-            <button type="submit" class="button2">Delete</button>
         </div>
     </form>
 {% endblock %}

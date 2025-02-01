@@ -8,6 +8,7 @@ django.setup()
 
 from genericApp.models import Film
 
+
 def populate(data):
     df = pd.read_csv(data)
 
@@ -24,7 +25,6 @@ def populate(data):
             return ', '.join([g['name'] for g in genres_list])
         except (ValueError, TypeError):
             return None  # Retorna None para valores inválidos
-
 
     df['genres'] = df['genres'].apply(parse_genres)
 
