@@ -81,6 +81,9 @@ instantes para iniciar, já que os cálculos são feitos na hora (atenção a ex
 #### models
 - Arquivo python que define as tabelas no meu bando de dados. A partir dele as migrations serão geradas.
 
+#### serializers
+- Arquivo python que define a "transmissão" do meu objeto. ele transforma os models em json.
+
 #### tests
 - Arquivo python onde seriam definidos os testes se houvesse algum. gerado automaticamente pelo Django.
 
