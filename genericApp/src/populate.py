@@ -40,6 +40,9 @@ def populate(data):
 
         # Verifique se o ID já existe na tabela antes de inserir
         if not Film.objects.filter(id=film_id).exists():
-            Film.objects.create(id=film_id, name=name, description=description, rating=rating, genres=genres)
+            try:
+                Film.objects.create(id=film_id, name=name, description=description, rating=rating, genres=genres)
+            except Exception as e:
+                print(e)
         else:
             print(f"ID {film_id} já existe. Pular inserção.")

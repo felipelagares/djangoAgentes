@@ -5,6 +5,7 @@ from .models import File, Film
 from .serializers import FilmSerializer
 from .src import recomendation
 from .src import ploting
+from .src.populate import populate
 
 
 def file_upload_view(request):
@@ -16,6 +17,7 @@ def file_upload_view(request):
             uploaded_name = uploaded_file.name
 
         if uploaded_file:
+            populate(uploaded_file)
             File.objects.create(name=uploaded_name, file=uploaded_file)
             return redirect('file_list')
     return render(request, 'file_upload.html')

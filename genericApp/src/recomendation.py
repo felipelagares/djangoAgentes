@@ -1,5 +1,5 @@
 import ast
-
+import nltk
 import numpy as np
 import pandas as pd
 from sentence_transformers import SentenceTransformer
@@ -21,24 +21,6 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 filmes = Film.objects.all()
 
 
-# gera a vetorizaçao das descriçoes pre-processadas e as processa caso ja nao estejam.
-# pré-processar significa a remoçao de caracteres especiais e stop words do texto
-def precalculate_embeddings(filmes):
-    embeddings = {}
-    for film in filmes:
-        preprocessed_text = film.clean_desc
-        if not preprocessed_text:
-            preprocessed_text = preprocess_text(film.description)
-            film.clean_desc = preprocessed_text
-            film.save()
-        embeddings[film.id] = model.encode(preprocessed_text)
-    return embeddings
-
-
-# carregar os embeddings sempre que o servidor for iniciar. carregá-los a cada requisiçao teria um custo gigantesco
-# de tempo por isso é calculado a partir do banco de dados antes de iniciar o serviço. Quabt maior o Banco de dados
-# mais tempo será gasto nesses cálculos. O meu tem 2800 filmes (isso é teoricamente pouco) e demora alguns segundos
-film_embeddings = precalculate_embeddings(filmes)
 
 
 # pre-processamento das palavras na descriçao do filme
@@ -59,12 +41,31 @@ def preprocess_text(text):
     return ' '.join(tokens)
 
 
+# gera a vetorizaçao das descriçoes pre-processadas e as processa caso ja nao estejam.
+# pré-processar significa a remoçao de caracteres especiais e stop words do texto
+def precalculate_embeddings(filmes):
+    embeddings = {}
+    for film in filmes:
+        preprocessed_text = film.clean_desc
+        if not preprocessed_text:
+            preprocessed_text = preprocess_text(film.description)
+            film.clean_desc = preprocessed_text
+            film.save()
+        embeddings[film.id] = model.encode(preprocessed_text)
+    return embeddings
+
+
 # calcula a similaridade semantica entre os filmes, não possui um longo tempo de espera pois os objetos comparados foram
 # vetorizados ao calcular os embeddings
 def calculate_semantic_similarity(embedding_a, embedding_b):
     similarity = cosine_similarity([embedding_a], [embedding_b])[0][0]
     return similarity * 100
 
+
+# carregar os embeddings sempre que o servidor for iniciar. carregá-los a cada requisiçao teria um custo gigantesco
+# de tempo por isso é calculado a partir do banco de dados antes de iniciar o serviço. Quabt maior o Banco de dados
+# mais tempo será gasto nesses cálculos. O meu tem 2800 filmes (isso é teoricamente pouco) e demora alguns segundos
+film_embeddings = precalculate_embeddings(filmes)
 
 # obtém os 5 filmes mais similares, retorna uma lista de listas do tipo [id_do_filme, similaridade_com_o_filme_buscado]
 # ou uma string caso o filme buscado não esteja no banco de dados
