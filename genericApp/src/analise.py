@@ -1,4 +1,14 @@
+import sys
 from transformers import pipeline
+from huggingface_hub import login
+
+sys.path.append(r"C:\Users\go2445ps\Documents\GitHub\djangoAgentes\.env")
+
+import settings
+
+hf_token = settings.HF_TOKEN
+
+login(hf_token)
 
 generator = pipeline("text-generation", model="mistralai/Mistral-7B-Instruct")
 
@@ -12,13 +22,14 @@ def is_valid_json(s: str) -> bool:
         return False
 
 
-def analise_description(json):
+def analise_description(json_string):
 
-    prompt = f'''
-    Você é um analisador de filmes, receberá os nomes e descrição de filmes
-    e retornará o que eles têm em comum com base na descrição.
-    {json}
-    '''
-
-    res = generator(prompt, max_length=300)
+    prompt =  "Você é um analisador de filmes. "
+    "Receberá nomes e descrições de filmes em JSON e identificará temas em comum.\n"
+    f"{json_string}\n"
+    "Com base na descrição, o que esses filmes têm em comum?"
+    # max_input = 1000
+    # prompt = prompt[:max_input]
+    res = generator(prompt, max_new_tokens=50)
+    print(res[0]['generated_text'])
     return res[0]["generated_text"]

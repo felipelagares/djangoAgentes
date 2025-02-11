@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render, get_object_or_404, redirect
 from rest_framework import viewsets, status
 from rest_framework.response import Response
@@ -5,6 +7,8 @@ from .models import File, Film
 from .serializers import FilmSerializer
 from .src.populate import populate
 from .src import recomendation, ploting, populate, analise
+import urllib.parse
+
 
 def file_upload_view(request):
     # view para receber um arquivo
@@ -123,7 +127,12 @@ class elementosEmComumViewSet(viewsets.ViewSet):
         if not films:
             return Response({"error": "O parâmetro 'films' é obrigatório"}, status=status.HTTP_400_BAD_REQUEST)
 
-        if not analise.is_valid_json(films):
+        decoded_films = urllib.parse.unquote(films)
+        decoded_films = decoded_films.replace("'%27%27%27", "").replace("%27", "'").replace("%22", '"')
+
+        if not analise.is_valid_json(decoded_films):
             return Response({"error": "O parâmetro 'films' deve ser no formato json"}, status=status.HTTP_400_BAD_REQUEST)
 
-        return analise.analise_description(films)
+        result = analise.analise_description(films)
+        data = {"semelhancas": result}
+        return Response(data, status=status.HTTP_200_OK)

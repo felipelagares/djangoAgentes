@@ -1,9 +1,10 @@
 from django.urls import path
 from . import views
-from .views import RecommendationViewSet
+from .views import RecommendationViewSet, elementosEmComumViewSet
 
 # Criar o endpoint de recomendação
 recommendation_list = RecommendationViewSet.as_view({'get': 'recommend'})
+analise = elementosEmComumViewSet.as_view({'get': 'analise'})
 
 # URLs de acesso
 urlpatterns = [
@@ -14,5 +15,6 @@ urlpatterns = [
     path('film/<int:pk>/', views.film_details_view, name='film_details'),  # Página para visualização de filmes
 
     # Endpoint de recomendação na API
-    path('api/recommendations/', recommendation_list, name='film_recommendation'),  # API para recomendações de filmes
+    path('api/recommendations/', recommendation_list, name='film_recommendation'),
+    path('api/analise', analise, name='films_analise' )# API para recomendações de filmes
 ]
