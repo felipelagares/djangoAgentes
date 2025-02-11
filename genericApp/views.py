@@ -4,9 +4,7 @@ from rest_framework.response import Response
 from .models import File, Film
 from .serializers import FilmSerializer
 from .src.populate import populate
-from .src import recomendation, ploting, populate
-
-
+from .src import recomendation, ploting, populate, analise
 
 def file_upload_view(request):
     # view para receber um arquivo
@@ -116,3 +114,16 @@ class RecommendationViewSet(viewsets.ViewSet):
         #     "img_data": img_data,
         # }
         # return Response(data, status=status.HTTP_200_OK)
+
+
+class elementosEmComumViewSet(viewsets.ViewSet):
+
+    def analise(self, request):
+        films = request.GET.get('films', None)
+        if not films:
+            return Response({"error": "O parâmetro 'films' é obrigatório"}, status=status.HTTP_400_BAD_REQUEST)
+
+        if not analise.is_valid_json(films):
+            return Response({"error": "O parâmetro 'films' deve ser no formato json"}, status=status.HTTP_400_BAD_REQUEST)
+
+        return analise.analise_description(films)

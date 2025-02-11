@@ -1,9 +1,10 @@
 # python 3.12.6
-Django~=5.0.4
+Django
 sentence-transformers
-pandas~=2.2.3
-scikit-learn~=1.6.1
-nltk~=3.9.1
-matplotlib~=3.10.0
-numpy~=2.2.2
-djangorestframework~=3.15.2
+pandas
+scikit-learn
+nltk
+matplotlib
+numpy
+djangorestframework
+transformers

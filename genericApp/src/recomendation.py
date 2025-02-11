@@ -10,6 +10,7 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import re
 
+
 # settando o django para poder usar os models
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project_root.settings')
 django.setup()
