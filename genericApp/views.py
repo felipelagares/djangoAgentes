@@ -3,9 +3,9 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from .models import File, Film
 from .serializers import FilmSerializer
-from .src import recomendation
-from .src import ploting
 from .src.populate import populate
+from .src import recomendation, ploting, populate
+
 
 
 def file_upload_view(request):
@@ -19,7 +19,11 @@ def file_upload_view(request):
         if uploaded_file:
             populate(uploaded_file)
             File.objects.create(name=uploaded_name, file=uploaded_file)
-            return redirect('file_list')
+
+        if request.POST['acao'] == 'populate':
+            populate.populate(uploaded_file)
+
+        return redirect('file_list')
     return render(request, 'file_upload.html')
 
 
@@ -27,15 +31,16 @@ def file_update_view(request, pk):
     # view para atualizar/deletar um arquivo
     file_instance = get_object_or_404(File, pk=pk)  # Obtém o registro
 
-    if 'action' in request.POST and request.POST['action'] == 'delete':
-        file_instance.delete()
-        return redirect('file_list')
-
     if request.method == 'POST':
-        file_instance.name = request.POST['name']
-        file_instance.file = request.FILES['file']
-        file_instance.save()
-        return redirect('file_list')
+        if request.POST['acao'] == 'delete':
+            file_instance.delete()
+            return redirect('file_list')
+
+        if request.POST['acao'] == 'update':
+            file_instance.name = request.POST['name']
+            file_instance.file = request.FILES['file']
+            file_instance.save()
+            return redirect('file_list')
 
     return render(request, 'file_update.html', {'file': file_instance})
 

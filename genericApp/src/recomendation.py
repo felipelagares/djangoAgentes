@@ -21,6 +21,24 @@ model = SentenceTransformer('all-MiniLM-L6-v2')
 filmes = Film.objects.all()
 
 
+# gera a vetorizaçao das descriçoes pre-processadas e as processa caso ja nao estejam.
+# pré-processar significa a remoçao de caracteres especiais e stop words do texto
+def precalculate_embeddings(filmes):
+    embeddings = {}
+    for film in filmes:
+        preprocessed_text = film.clean_desc
+        if not preprocessed_text:
+            preprocessed_text = preprocess_text(film.description)
+            film.clean_desc = preprocessed_text
+            film.save()
+        embeddings[film.id] = model.encode(preprocessed_text)
+    return embeddings
+
+
+# carregar os embeddings sempre que o servidor for iniciar. carregá-los a cada requisiçao teria um custo gigantesco
+# de tempo por isso é calculado a partir do banco de dados antes de iniciar o serviço. Quabt maior o Banco de dados
+# mais tempo será gasto nesses cálculos. Quanto mais filmes mais demora para calcular tudo.
+film_embeddings = precalculate_embeddings(filmes)
 
 
 # pre-processamento das palavras na descriçao do filme
@@ -56,7 +74,8 @@ def precalculate_embeddings(filmes):
 
 
 # calcula a similaridade semantica entre os filmes, não possui um longo tempo de espera pois os objetos comparados foram
-# vetorizados ao calcular os embeddings
+# vetorizados ao calcular os embeddings. Geralmente cossine_similarity é usado como métrica mais comum para o modelo mas
+# serve perfeitamente para encontrar os embeddings mais parecidos.
 def calculate_semantic_similarity(embedding_a, embedding_b):
     similarity = cosine_similarity([embedding_a], [embedding_b])[0][0]
     return similarity * 100
