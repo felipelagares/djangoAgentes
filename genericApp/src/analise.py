@@ -26,6 +26,6 @@ def analise_description(json_string):
         ]
     )
 
-    res = completion.choices[0].message['content']
+    res = completion.choices[0].message.content
 
     return res

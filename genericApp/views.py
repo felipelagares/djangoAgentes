@@ -8,6 +8,8 @@ from .serializers import FilmSerializer
 from .src.populate import populate
 from .src import recomendation, ploting, populate, analise
 import urllib.parse
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 
 def file_upload_view(request):
@@ -82,6 +84,25 @@ def film_details_view(request, pk):
 
 
 class RecommendationViewSet(viewsets.ViewSet):
+    @swagger_auto_schema(
+        operation_description="Ao receber um nome de filme retorna os 5 filmes mais "
+                              "parecidos com ele disponiveis na base de dados e um "
+                              "grafico em base64 de suas avaliações",
+        manual_parameters=[
+            openapi.Parameter(
+                name="film",
+                in_=openapi.IN_QUERY,  # Especifica que o parâmetro está no link da requisição
+                description="Nome do filme a ser buscado.",
+                required=True,
+                type=openapi.TYPE_STRING,
+                default="Star Wars"
+            ),
+        ],
+        responses={200: openapi.Response('Resposta de sucesso'),
+                   400: openapi.Response('O parâmetro "film" é obrigatório'),
+                   404: openapi.Response('Filme nao encontrado')
+                   }
+    )
     def recommend(self, request):
         film_name = request.GET.get('film', None)
 
@@ -95,15 +116,15 @@ class RecommendationViewSet(viewsets.ViewSet):
             return Response({"error": "Filme não encontrado"}, status=status.HTTP_404_NOT_FOUND)
 
         # Buscar os filmes recomendados
-        relateds = [Film.objects.get(pk=item[0]) for item in similaridades]
+        relateds = [Film.objects.get(pk=item[0]) for item in similaridades]  # uma lista itens pega com os ids passados
         relateds.sort(key=lambda x: float(x.rating or 0), reverse=True)
 
         # ------------------ Usando serializers --------------------------------------------
         # Serializar os dados dos filmes
-        serializer = FilmSerializer(relateds, many=True)
+        serializer = FilmSerializer(relateds, many=True)  # transforma em json a lista de filmes
 
         # Gerar gráfico de avaliações dos filmes recomendados
-        img_data = ploting.plot_film_ratings(relateds)
+        img_data = ploting.plot_film_ratings(relateds)  # gera o gráfico
 
         # Preparar a resposta
         data = {"films": serializer.data, "img_data": img_data}
@@ -121,6 +142,35 @@ class RecommendationViewSet(viewsets.ViewSet):
 
 
 class elementosEmComumViewSet(viewsets.ViewSet):
+    @swagger_auto_schema(
+        operation_description="Ao receber uma lista de descrições de filmes em formato json retorna o que eles tem em "
+                              "comum",
+        manual_parameters=[
+            openapi.Parameter(
+                name="films",
+                in_=openapi.IN_QUERY,  # Especifica que o parâmetro está no corpo da requisição
+                description="Lista de descrições dos filmes em formato JSON.",
+                required=True,
+                type=openapi.TYPE_STRING,
+                default="""
+                {"films": 
+                [
+                    {"description": "The epic saga continues as Luke Skywalker learns the ways of the Jedi from Yoda while Darth Vader pursues him."},
+                    {"description": "Luke Skywalker and Han Solo team up to rescue Princess Leia and restore peace to the Empire."},
+                    {"description": "Luke rescues Han Solo and Leia from Jabba the Hutt, then faces Darth Vader to become a Jedi."},
+                    {"description": "Anakin Skywalker turns to the dark side, becoming Darth Vader, while the Jedi are almost destroyed."},
+                    {"description": "A space hero and his sidekick fight Dark Helmet to save Princess Vespa and her planet's air supply."}
+                ]
+                }
+                """
+            ),
+        ],
+
+        responses={200: openapi.Response('Resposta de sucesso'),
+                   400: openapi.Response('O parâmetro "films" é obrigatório'),
+                   406: openapi.Response('O parâmetro "films" deve estar no formato json'),
+                   }
+    )
 
     def analise(self, request):
         films = request.GET.get('films', None)
@@ -131,7 +181,7 @@ class elementosEmComumViewSet(viewsets.ViewSet):
         decoded_films = decoded_films.replace("'%27%27%27", "").replace("%27", "'").replace("%22", '"')
 
         if not analise.is_valid_json(decoded_films):
-            return Response({"error": "O parâmetro 'films' deve ser no formato json"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": "O parâmetro 'films' deve ser no formato json"}, status=status.HTTP_406_NOT_ACCEPTABLE_BAD_REQUEST)
 
         result = analise.analise_description(films)
         data = {"semelhancas": result}
