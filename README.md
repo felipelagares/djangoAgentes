@@ -3,9 +3,10 @@
 - Felipe Galvão Lagares
 - Hailton David Lemos
 - Raphael Abenom dos Santos
+- Carolina Pastor Humpiri
 
 ### Video
-[link para o video no youtube](https://youtu.be/HDANciib2Ws?feature=shared) com uma explicação básica do projeto rodando.
+[link para o video no youtube]() com uma explicação básica do projeto rodando. (desabilitado)
 
 ## Recomendações pessoais
 ### github
@@ -57,6 +58,10 @@ não são aplicados, deve ser utilizado `python manage.py migrate` para que os c
 
 #### src
 - Diretório criado manualmente para acomodar arquivos de código com funções específicas
+
+##### analise.py
+- Arquivo python com função de consumo de IA da openai que resume o que os filmes passados como argumento tem em comum
+
 ##### ploting.py
 - Arquivo python onde eu defino as funções de  plotagem de gráfico baseado nas avaliações dos filmes
 
