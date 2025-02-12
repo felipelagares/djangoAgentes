@@ -16,8 +16,8 @@ copiar este repositório com ele em code -> abrir com github desktop.
 
 ## Rodando a aplicação localmente 🤞
 
-O csv com os dados está disponivel [aqui](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset/data)
-É necessário uma chave da openai para a função de análise da api.
+- O csv com os dados está disponivel [aqui](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset/data)
+- É necessário uma chave da openai para a função de análise da api.
 
 ### Python
 Instalar o python, se ja não o tiver, baixando o instalador no final da pagina deste do site oficial do python: [link](https://www.python.org/downloads/release/python-3126/).
