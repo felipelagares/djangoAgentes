@@ -1,18 +1,10 @@
-import sys
 from transformers import pipeline
-from huggingface_hub import login
-
-sys.path.append(r"C:\Users\go2445ps\Documents\GitHub\djangoAgentes\.env")
-
-import settings
-
-hf_token = settings.HF_TOKEN
-
-login(hf_token)
-
-generator = pipeline("text-generation", model="mistralai/Mistral-7B-Instruct")
+from openai import OpenAI
 
 import json
+
+client = OpenAI()
+
 
 def is_valid_json(s: str) -> bool:
     try:
@@ -23,13 +15,17 @@ def is_valid_json(s: str) -> bool:
 
 
 def analise_description(json_string):
+    completion = client.chat.completions.create(
+        model="gpt-3.5-turbo",  # modelo mais barato da openai por api
+        messages=[
+            {"role": "system", "content": "voce é um analisador de filmes"},  # instruções iniciais do sistema
+            {
+                "role": "user",
+                "content": f"o que os filmes a seguir tem em comum: {json_string}"  # meu prompt
+            }
+        ]
+    )
 
-    prompt =  "Você é um analisador de filmes. "
-    "Receberá nomes e descrições de filmes em JSON e identificará temas em comum.\n"
-    f"{json_string}\n"
-    "Com base na descrição, o que esses filmes têm em comum?"
-    # max_input = 1000
-    # prompt = prompt[:max_input]
-    res = generator(prompt, max_new_tokens=50)
-    print(res[0]['generated_text'])
-    return res[0]["generated_text"]
+    res = completion.choices[0].message['content']
+
+    return res
